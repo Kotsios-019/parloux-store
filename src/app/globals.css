@@ -1,0 +1,384 @@
+/* ParlouX Brand Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Josefin+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base Styles */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    line-height: 1.2;
+  }
+
+  /* Dark mode styles */
+  .dark {
+    color-scheme: dark;
+  }
+
+  .dark body {
+    background-color: #0A0A0A;
+    color: #F9F8F6;
+  }
+
+  /* Accessibility Styles */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .sr-only:focus {
+    position: static;
+    width: auto;
+    height: auto;
+    padding: inherit;
+    margin: inherit;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+  }
+
+  /* Focus styles for keyboard navigation */
+  .keyboard-user *:focus {
+    outline: 2px solid #D4AF37;
+    outline-offset: 2px;
+  }
+
+  /* High contrast mode support */
+  @media (prefers-contrast: high) {
+    .btn-primary {
+      border: 2px solid #000;
+    }
+    
+    .btn-secondary {
+      border: 2px solid #D4AF37;
+    }
+  }
+
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  /* Focus visible for better keyboard navigation */
+  .focus-visible:focus-visible {
+    outline: 2px solid #D4AF37;
+    outline-offset: 2px;
+  }
+}
+
+/* Component Styles */
+@layer components {
+  /* Button Styles */
+  .btn-primary {
+    @apply bg-soft-gold text-deep-black px-6 py-3 rounded-none font-medium transition-all duration-300 hover:bg-bright-gold hover:scale-105 focus:outline-none focus:ring-2 focus:ring-soft-gold focus:ring-offset-2;
+  }
+
+  .btn-secondary {
+    @apply bg-transparent border-2 border-soft-gold text-soft-gold px-6 py-3 rounded-none font-medium transition-all duration-300 hover:bg-soft-gold hover:text-deep-black focus:outline-none focus:ring-2 focus:ring-soft-gold focus:ring-offset-2;
+  }
+
+  .btn-outline {
+    @apply bg-transparent border border-elegant-base text-font-secondary px-6 py-3 rounded-none font-medium transition-all duration-300 hover:border-soft-gold hover:text-soft-gold focus:outline-none focus:ring-2 focus:ring-soft-gold focus:ring-offset-2;
+  }
+
+  /* Dark mode button variants */
+  .dark .btn-primary {
+    @apply bg-soft-gold text-deep-black hover:bg-bright-gold;
+  }
+
+  .dark .btn-secondary {
+    @apply border-soft-gold text-soft-gold hover:bg-soft-gold hover:text-deep-black;
+  }
+
+  .dark .btn-outline {
+    @apply border-elegant-base text-font-secondary hover:border-soft-gold hover:text-soft-gold;
+  }
+
+  /* Card Styles */
+  .card {
+    @apply bg-ivory-white border border-elegant-base transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
+  }
+
+  .dark .card {
+    @apply bg-deep-black border-elegant-base;
+  }
+
+  /* Input Styles */
+  .input {
+    @apply w-full px-4 py-3 border border-elegant-base bg-ivory-white text-font-primary placeholder-font-secondary focus:outline-none focus:border-soft-gold focus:ring-1 focus:ring-soft-gold transition-colors duration-300;
+  }
+
+  .dark .input {
+    @apply bg-deep-black border-elegant-base text-font-primary-dark placeholder-font-muted-dark focus:border-soft-gold;
+  }
+
+  /* Link Styles */
+  .link-gold {
+    @apply text-soft-gold hover:text-bright-gold transition-colors duration-300 relative;
+  }
+
+  .link-gold::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: #C9A34E;
+    transition: width 0.3s ease;
+  }
+
+  .link-gold:hover::after {
+    width: 100%;
+  }
+
+  /* Typography */
+  .heading-primary {
+    @apply text-4xl md:text-5xl lg:text-6xl font-cormorant font-medium text-font-primary;
+  }
+
+  .heading-secondary {
+    @apply text-2xl md:text-3xl lg:text-4xl font-cormorant font-medium text-font-primary;
+  }
+
+  .heading-tertiary {
+    @apply text-xl md:text-2xl font-cormorant font-medium text-font-primary;
+  }
+
+  .body-large {
+    @apply text-lg md:text-xl font-josefin font-light text-font-secondary;
+  }
+
+  .body-medium {
+    @apply text-base md:text-lg font-josefin font-light text-font-secondary;
+  }
+
+  .body-small {
+    @apply text-sm md:text-base font-josefin font-light text-font-secondary;
+  }
+
+  /* Dark mode typography */
+  .dark .heading-primary,
+  .dark .heading-secondary,
+  .dark .heading-tertiary {
+    @apply text-font-primary-dark;
+  }
+
+  .dark .body-large,
+  .dark .body-medium,
+  .dark .body-small {
+    @apply text-font-secondary-dark;
+  }
+}
+
+/* Utility Classes */
+@layer utilities {
+  /* Animation utilities */
+  .animate-fade-in {
+    animation: fadeIn 0.8s ease-out;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.8s ease-out;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.5s ease-out;
+  }
+
+  .animate-gold-underline {
+    animation: goldUnderline 0.3s ease-out;
+  }
+
+  /* Custom scrollbar */
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: #C9A34E #F9F8F6;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: #F9F8F6;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background-color: #C9A34E;
+    border-radius: 3px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+    background-color: #DDBB5F;
+  }
+
+  /* Dark mode scrollbar */
+  .dark .scrollbar-thin {
+    scrollbar-color: #C9A34E #0A0A0A;
+  }
+
+  .dark .scrollbar-thin::-webkit-scrollbar-track {
+    background: #0A0A0A;
+  }
+
+  /* Focus styles */
+  .focus-gold {
+    @apply focus:outline-none focus:ring-2 focus:ring-soft-gold focus:ring-offset-2;
+  }
+
+  /* Hover effects */
+  .hover-lift {
+    @apply transition-transform duration-300 hover:-translate-y-1;
+  }
+
+  .hover-gold {
+    @apply transition-colors duration-300 hover:text-soft-gold;
+  }
+
+  /* Dark mode text utilities */
+  .text-dark-primary {
+    @apply text-font-primary dark:text-font-primary-dark;
+  }
+
+  .text-dark-secondary {
+    @apply text-font-secondary dark:text-font-secondary-dark;
+  }
+
+  .text-dark-muted {
+    @apply text-font-secondary/60 dark:text-font-muted-dark;
+  }
+
+  /* Spacing utilities */
+  .section-padding {
+    @apply py-16 md:py-20 lg:py-24;
+  }
+
+  .container-padding {
+    @apply px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Grid utilities */
+  .grid-auto-fit {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+
+  .grid-auto-fill {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  }
+}
+
+/* Keyframes */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes goldUnderline {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Enhanced text readability for hero sections */
+.text-outline {
+  text-shadow: 
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000,
+    0 0 8px rgba(0, 0, 0, 0.8);
+}
+
+.text-outline-light {
+  text-shadow: 
+    -1px -1px 0 rgba(0, 0, 0, 0.8),
+    1px -1px 0 rgba(0, 0, 0, 0.8),
+    -1px 1px 0 rgba(0, 0, 0, 0.8),
+    1px 1px 0 rgba(0, 0, 0, 0.8),
+    0 0 4px rgba(0, 0, 0, 0.6);
+}
+
+/* View transition styles for animated theme toggle */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}

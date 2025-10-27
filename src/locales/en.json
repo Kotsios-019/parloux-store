@@ -1,0 +1,176 @@
+{
+  "navigation": {
+    "home": "Home",
+    "products": "Products",
+    "collections": "Collections",
+    "about": "About",
+    "contact": "Contact",
+    "cart": "Cart",
+    "search": "Search",
+    "menu": "Menu",
+    "close": "Close"
+  },
+  "product": {
+    "addToCart": "Add to Cart",
+    "soldOut": "Sold Out",
+    "price": "Price",
+    "compareAtPrice": "Compare at",
+    "size": "Size",
+    "color": "Color",
+    "quantity": "Quantity",
+    "description": "Description",
+    "features": "Features",
+    "shipping": "Shipping",
+    "returns": "Returns",
+    "sizeGuide": "Size Guide",
+    "selectSize": "Select Size",
+    "selectColor": "Select Color",
+    "inStock": "In Stock",
+    "outOfStock": "Out of Stock",
+    "lowStock": "Only {count} left",
+    "freeShipping": "Free shipping on orders over $100",
+    "estimatedDelivery": "Estimated delivery: 3-5 business days"
+  },
+  "cart": {
+    "title": "Shopping Cart",
+    "empty": "Your cart is empty",
+    "emptyDescription": "Add some beautiful pieces to get started",
+    "startShopping": "Start Shopping",
+    "subtotal": "Subtotal",
+    "total": "Total",
+    "tax": "Tax",
+    "shipping": "Shipping",
+    "checkout": "Checkout",
+    "continueShopping": "Continue Shopping",
+    "remove": "Remove",
+    "update": "Update",
+    "quantity": "Quantity",
+    "item": "item",
+    "items": "items",
+    "clearCart": "Clear Cart"
+  },
+  "collection": {
+    "allProducts": "All Products",
+    "filterBy": "Filter by",
+    "sortBy": "Sort by",
+    "newest": "Newest",
+    "priceLowHigh": "Price: Low to High",
+    "priceHighLow": "Price: High to Low",
+    "bestSelling": "Best Selling",
+    "clearFilters": "Clear Filters",
+    "noProducts": "No products found",
+    "showing": "Showing {count} of {total} products"
+  },
+  "search": {
+    "placeholder": "Search for products...",
+    "noResults": "No results found for \"{query}\"",
+    "suggestions": "Suggestions",
+    "recentSearches": "Recent Searches",
+    "clearHistory": "Clear History"
+  },
+  "footer": {
+    "newsletter": {
+      "title": "Stay Updated",
+      "subtitle": "Subscribe to our newsletter for exclusive offers and new arrivals",
+      "placeholder": "Enter your email",
+      "subscribe": "Subscribe",
+      "success": "Thank you for subscribing!",
+      "error": "Please enter a valid email address"
+    },
+    "links": {
+      "about": "About Us",
+      "contact": "Contact",
+      "shipping": "Shipping Info",
+      "returns": "Returns & Exchanges",
+      "sizeGuide": "Size Guide",
+      "privacy": "Privacy Policy",
+      "terms": "Terms of Service",
+      "faq": "FAQ"
+    },
+    "social": {
+      "followUs": "Follow Us",
+      "instagram": "Instagram",
+      "facebook": "Facebook",
+      "twitter": "Twitter",
+      "pinterest": "Pinterest"
+    },
+    "copyright": "© 2024 ParlouX. All rights reserved."
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Something went wrong",
+    "retry": "Try Again",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "close": "Close",
+    "save": "Save",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "yes": "Yes",
+    "no": "No",
+    "ok": "OK"
+  },
+  "homepage": {
+    "hero": {
+      "title": "Elegance Redefined",
+      "subtitle": "Discover our curated collection of luxury womenswear that embodies confidence, sophistication, and modern femininity.",
+      "cta": "Shop Collection",
+      "secondaryCta": "Learn More"
+    },
+    "featured": {
+      "title": "Featured Collections",
+      "subtitle": "Handpicked pieces that define the ParlouX aesthetic"
+    },
+    "newArrivals": {
+      "title": "New Arrivals",
+      "subtitle": "Fresh styles for the modern woman"
+    },
+    "testimonials": {
+      "title": "What Our Customers Say",
+      "subtitle": "Join thousands of women who have discovered their perfect style with ParlouX"
+    }
+  },
+  "about": {
+    "title": "About ParlouX",
+    "subtitle": "Where elegance meets confidence",
+    "story": {
+      "title": "Our Story",
+      "content": "ParlouX was born from a vision to create luxury womenswear that speaks softly but with authority. Every piece is designed with the modern woman in mind - sophisticated, confident, and effortlessly elegant."
+    },
+    "mission": {
+      "title": "Our Mission",
+      "content": "To empower women through fashion that celebrates their unique beauty and strength. We believe that true luxury lies in the details, the quality, and the way our pieces make you feel."
+    },
+    "values": {
+      "title": "Our Values",
+      "quality": "Quality",
+      "qualityDesc": "Premium materials and craftsmanship in every piece",
+      "sustainability": "Sustainability",
+      "sustainabilityDesc": "Ethical practices and responsible fashion",
+      "empowerment": "Empowerment",
+      "empowermentDesc": "Fashion that celebrates and empowers women"
+    }
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "We'd love to hear from you",
+    "form": {
+      "name": "Name",
+      "email": "Email",
+      "subject": "Subject",
+      "message": "Message",
+      "send": "Send Message",
+      "success": "Thank you! Your message has been sent.",
+      "error": "Sorry, there was an error sending your message."
+    },
+    "info": {
+      "title": "Get in Touch",
+      "email": "Email",
+      "phone": "Phone",
+      "address": "Address",
+      "hours": "Business Hours",
+      "hoursValue": "Monday - Friday: 9AM - 6PM\nSaturday: 10AM - 4PM\nSunday: Closed"
+    }
+  }
+}
