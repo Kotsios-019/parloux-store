@@ -23,7 +23,7 @@ export default function AccessibleNavbar({ className = '' }: AccessibleNavbarPro
   const { t } = useLanguage();
   const { isAuthenticated, user, logout } = useAuth();
   const { getItemCount } = useCart();
-  const { getWishlistCount } = useWishlist();
+  const { getItemCount: getWishlistCount } = useWishlist();
   const { isKeyboardUser } = useKeyboardNavigation();
   const { focusElement } = useFocusManagement();
   

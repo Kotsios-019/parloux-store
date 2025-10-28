@@ -29,7 +29,7 @@ export default function WishlistButton({
   const router = useRouter();
   const [isAnimating, setIsAnimating] = useState(false);
 
-  const isInList = isInWishlist(product.id, variant.id, size, color);
+  const isInList = isInWishlist(product.id);
 
   const handleClick = (e: React.MouseEvent) => {
     e.preventDefault(); // Prevent any navigation
@@ -45,7 +45,7 @@ export default function WishlistButton({
     }
     
     setIsAnimating(true);
-    toggleItem(product, variant, size, color);
+    toggleItem(product);
     
     // Reset animation after a short delay
     setTimeout(() => setIsAnimating(false), 300);

@@ -69,8 +69,7 @@ export default function FeaturedProducts() {
       return;
     }
     
-    const variant = product.variants[0];
-    addToWishlist(product, variant, variant.size, variant.color);
+    addToWishlist(product);
   };
 
   return (

@@ -12,7 +12,7 @@ export function useFocusManagement() {
     }
   };
 
-  const trapFocus = (containerRef: React.RefObject<HTMLElement>) => {
+  const trapFocus = (containerRef: React.RefObject<HTMLElement | null>) => {
     useEffect(() => {
       const container = containerRef.current;
       if (!container) return;

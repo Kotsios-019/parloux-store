@@ -53,12 +53,12 @@ export default function ProductPage({ product }: ProductPageProps) {
   useEffect(() => {
     // If there's only one size, auto-select it
     if (availableSizes.length === 1 && !selectedSize) {
-      setSelectedSize(availableSizes[0]);
+      setSelectedSize(availableSizes[0]!);
     }
     
     // If there's only one color, auto-select it
     if (availableColors.length === 1 && !selectedColor) {
-      setSelectedColor(availableColors[0]);
+      setSelectedColor(availableColors[0]!);
     }
     
     // Find matching variant

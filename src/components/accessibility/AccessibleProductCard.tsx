@@ -53,14 +53,7 @@ export default function AccessibleProductCard({
     try {
       // Add the first variant as default (in real implementation, user would select)
       const variant = product.variants[0];
-      addToCart({
-        id: `${product.id}-${variant.id}`,
-        product,
-        variant,
-        quantity: 1,
-        size: variant.size || '',
-        color: variant.color || ''
-      });
+      addToCart(product, variant, 1, variant.size, variant.color);
       
       announce(`${product.title} added to cart`);
     } catch (error) {
@@ -118,8 +111,8 @@ export default function AccessibleProductCard({
           aria-label={`View details for ${product.title}`}
         >
           <ProductImage
-            src={product.images[0]}
-            alt={`${product.title} - ${product.category}`}
+            src={product.images[0]?.src || '/images/products/placeholder.svg'}
+            alt={product.images[0]?.alt || `${product.title} - ${product.category}`}
             className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
             priority={index < 3}
           />

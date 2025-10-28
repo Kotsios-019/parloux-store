@@ -35,8 +35,8 @@ export default function CollectionPage({ params }: CollectionPageProps) {
     addToCart(product, variant, quantity, size, color);
   };
 
-  const handleAddToWishlist = (product: any, variant: any, size?: string, color?: string) => {
-    addToWishlist(product, variant, size, color);
+  const handleAddToWishlist = (product: any) => {
+    addToWishlist(product);
   };
 
   // Handle async params

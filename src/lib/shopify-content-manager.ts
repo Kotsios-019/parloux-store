@@ -218,7 +218,7 @@ export class ShopifyContentManager {
     const collections = response.data.collections.edges.map((edge: any) => this.transformCollection(edge.node));
     
     // Filter collections with featured metafield
-    return collections.filter(collection => 
+    return collections.filter((collection: ShopifyCollection) => 
       collection.metafields?.some((metafield: any) => 
         metafield.key === 'featured' && metafield.value === 'true'
       )
