@@ -227,21 +227,26 @@ export function MobileDrawer({
 }: MobileDrawerProps) {
   const [dragY, setDragY] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
+  const [dragStartY, setDragStartY] = useState(0);
   const drawerRef = useRef<HTMLDivElement>(null);
+  const handleRef = useRef<HTMLDivElement>(null);
 
+  // Only handle drag on the drag handle area
   const handleDragStart = (event: React.TouchEvent) => {
     setIsDragging(true);
-    setDragY(event.touches[0].clientY);
+    setDragStartY(event.touches[0].clientY);
+    setDragY(0);
   };
 
   const handleDragMove = (event: React.TouchEvent) => {
     if (!isDragging) return;
     
+    event.preventDefault(); // Prevent scrolling while dragging
     const currentY = event.touches[0].clientY;
-    const deltaY = currentY - dragY;
+    const deltaY = currentY - dragStartY;
     
     if (deltaY > 0) {
-      setDragY(currentY);
+      setDragY(deltaY);
     }
   };
 
@@ -256,6 +261,12 @@ export function MobileDrawer({
     }
     
     setDragY(0);
+    setDragStartY(0);
+  };
+
+  // Stop event propagation for content area to prevent drag interference
+  const handleContentTouch = (e: React.TouchEvent) => {
+    e.stopPropagation();
   };
 
   return (
@@ -284,27 +295,41 @@ export function MobileDrawer({
           open: { y: 0 },
           closed: { y: '100%' }
         }}
-        transition={{ type: 'spring', damping: 30, stiffness: 300 }}
-        onTouchStart={handleDragStart}
-        onTouchMove={handleDragMove}
-        onTouchEnd={handleDragEnd}
+        animate={{
+          y: isOpen ? (dragY > 0 ? dragY : 0) : '100%'
+        }}
+        transition={isDragging ? { duration: 0 } : { type: 'spring', damping: 30, stiffness: 300 }}
+        style={{ touchAction: 'pan-y' }}
       >
-        {/* Drag handle */}
-        <div className="flex justify-center pt-3 pb-2">
+        {/* Drag handle - only area that triggers drag */}
+        <div 
+          ref={handleRef}
+          className="flex justify-center pt-3 pb-2 cursor-grab active:cursor-grabbing"
+          onTouchStart={handleDragStart}
+          onTouchMove={handleDragMove}
+          onTouchEnd={handleDragEnd}
+        >
           <div className="w-12 h-1 bg-elegant-base/30 rounded-full" />
         </div>
         
         {/* Header */}
         {title && (
-          <div className="px-6 py-4 border-b border-elegant-base/20">
+          <div 
+            className="px-6 py-4 border-b border-elegant-base/20"
+            onTouchStart={handleContentTouch}
+          >
             <h3 className="text-lg font-cormorant font-semibold text-deep-black dark:text-ivory-white">
               {title}
             </h3>
           </div>
         )}
         
-        {/* Content */}
-        <div className="max-h-[80vh] overflow-y-auto">
+        {/* Content - stops drag event propagation */}
+        <div 
+          className="max-h-[80vh] overflow-y-auto"
+          onTouchStart={handleContentTouch}
+          onClick={(e) => e.stopPropagation()}
+        >
           {children}
         </div>
       </motion.div>
