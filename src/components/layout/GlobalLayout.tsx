@@ -14,7 +14,6 @@ import {
 import CartDrawer from '@/components/cart/CartDrawer';
 import WishlistDrawer from '@/components/wishlist/WishlistDrawer';
 import SearchModal from '@/components/search/SearchModal';
-import MobileNavigation from '@/components/layout/MobileNavigation';
 import { useUserDataSync } from '@/hooks/useUserDataSync';
 import { ErrorBoundary } from '@/components/error/ErrorBoundary';
 import { NetworkStatusProvider } from '@/components/error/NetworkErrorHandler';
@@ -99,8 +98,12 @@ export default function GlobalLayout({ children }: GlobalLayoutProps) {
                   <a
                     key={index}
                     href={item.link}
-                    className="text-font-primary dark:text-ivory-white hover:text-soft-gold dark:hover:text-bright-gold font-josefin font-light transition-colors duration-300"
-                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="block py-2 text-font-primary dark:text-ivory-white hover:text-soft-gold dark:hover:text-bright-gold font-josefin font-light transition-colors duration-300 cursor-pointer"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setIsMobileMenuOpen(false);
+                      window.location.href = item.link;
+                    }}
                   >
                     {item.name}
                   </a>
@@ -111,9 +114,6 @@ export default function GlobalLayout({ children }: GlobalLayoutProps) {
               </MobileNavMenu>
             </MobileNav>
           </Navbar>
-
-          {/* Mobile Navigation */}
-          <MobileNavigation />
 
           {/* Main Content */}
           <ErrorBoundary>

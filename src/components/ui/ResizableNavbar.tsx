@@ -205,13 +205,15 @@ export const MobileNavMenu = ({
     <AnimatePresence>
       {isOpen && (
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -10 }}
           className={cn(
-            "absolute inset-x-0 top-16 z-50 flex w-full flex-col items-start justify-start gap-4 rounded-lg bg-ivory-white dark:bg-deep-black px-4 py-8 shadow-[0_0_24px_rgba(201,_163,_78,_0.15),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(201,_163,_78,_0.1),_0_0_4px_rgba(201,_163,_78,_0.1),_0_16px_68px_rgba(10,_10,_10,_0.1),_0_1px_0_rgba(249,_248,_246,_0.1)_inset]",
+            "absolute inset-x-0 top-full mt-2 z-[60] flex w-full flex-col items-start justify-start gap-4 rounded-lg bg-ivory-white dark:bg-deep-black px-4 py-8 shadow-[0_0_24px_rgba(201,_163,_78,_0.15),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(201,_163,_78,_0.1),_0_0_4px_rgba(201,_163,_78,_0.1),_0_16px_68px_rgba(10,_10,_10,_0.1),_0_1px_0_rgba(249,_248,_246,_0.1)_inset]",
             className,
           )}
+          style={{ pointerEvents: 'auto' }}
+          onClick={(e) => e.stopPropagation()}
         >
           {children}
         </motion.div>
