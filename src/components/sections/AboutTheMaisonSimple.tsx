@@ -64,10 +64,10 @@ export default function AboutTheMaisonSimple() {
 
   if (!mounted) {
     return (
-      <section className="min-h-screen bg-ivory-white dark:bg-deep-black">
-        <div className="h-screen flex">
+      <section className="bg-ivory-white dark:bg-deep-black">
+        <div className="flex flex-col md:flex-row min-h-screen">
           {/* Text Side */}
-          <div className="w-1/2 p-16 flex items-center">
+          <div className="w-full md:w-1/2 p-8 sm:p-12 md:p-16 flex items-center">
             <div className="max-w-lg">
               <h2 className="text-4xl font-cormorant font-light text-deep-black dark:text-ivory-white mb-8">
                 About the Maison
@@ -83,7 +83,7 @@ export default function AboutTheMaisonSimple() {
           </div>
           
           {/* Video Side */}
-          <div className="w-1/2 relative overflow-hidden">
+          <div className="w-full md:w-1/2 relative overflow-hidden h-64 sm:h-80 md:h-auto">
             <video
               autoPlay
               muted
@@ -102,11 +102,11 @@ export default function AboutTheMaisonSimple() {
   }
 
   return (
-    <section className="min-h-screen bg-ivory-white dark:bg-deep-black relative overflow-hidden">
-      <div className="h-screen flex">
+    <section className="bg-ivory-white dark:bg-deep-black relative overflow-hidden">
+      <div className="flex flex-col md:flex-row min-h-screen">
         {/* Text Side - Left */}
         <motion.div 
-          className="w-1/2 p-16 flex items-center relative z-10"
+          className="w-full md:w-1/2 p-8 sm:p-12 md:p-16 flex items-center relative z-10"
           initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
@@ -200,7 +200,7 @@ export default function AboutTheMaisonSimple() {
 
         {/* Video Side - Right */}
         <motion.div 
-          className="w-1/2 relative overflow-hidden"
+          className="w-full md:w-1/2 relative overflow-hidden h-64 sm:h-80 md:h-auto"
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1.2 }}

@@ -90,14 +90,14 @@ export default function FeaturedProducts() {
         </motion.div>
 
         {/* 3D Product Cards */}
-        <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+        <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 place-items-center md:place-items-stretch">
           {featuredProducts.map((product, index) => (
-            <StaggerItem key={product.id} className="flex justify-center">
+            <StaggerItem key={product.id} className="w-80 justify-self-center md:w-auto md:justify-self-stretch">
               <HoverScale>
               <div className="relative">
                 <Link href={product.href}>
                   <CardContainer className="inter-var">
-                    <CardBody className="bg-transparent relative group">
+                    <CardBody className="bg-transparent relative group w-80">
                       {/* Main Product Card */}
                       <CardItem
                         translateZ="50"
@@ -177,8 +177,8 @@ export default function FeaturedProducts() {
                   </CardContainer>
                 </Link>
                 
-                {/* Wishlist Button - Outside Link */}
-                <div className="absolute top-4 right-4 z-20">
+                {/* Wishlist Button - Outside Link (hidden on mobile for perfect centering) */}
+                <div className="hidden md:block absolute top-4 right-4 z-20">
                   <button
                     onClick={(e) => {
                       const mockProduct = mockProducts.find(p => p.handle === product.href.replace('/products/', '')) || mockProducts[0];
