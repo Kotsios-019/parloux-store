@@ -94,6 +94,7 @@ interface SwipeableCarouselProps {
   showDots?: boolean;
   autoPlay?: boolean;
   interval?: number;
+  showArrows?: boolean;
 }
 
 export function SwipeableCarousel({ 
@@ -101,7 +102,8 @@ export function SwipeableCarousel({
   className = '', 
   showDots = true,
   autoPlay = false,
-  interval = 5000
+  interval = 5000,
+  showArrows = false
 }: SwipeableCarouselProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
@@ -109,8 +111,31 @@ export function SwipeableCarousel({
   const [dragOffset, setDragOffset] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
 
+  const CARD_WIDTH = 320; // w-80
+  const GAP = 16; // 1rem gap between slides
+  const SLIDE_WIDTH = CARD_WIDTH + GAP;
+
+  const [visibleCount, setVisibleCount] = useState(1);
+
+  // Recalculate visible slides on resize
+  useEffect(() => {
+    const recalc = () => {
+      const width = containerRef.current?.offsetWidth || 0;
+      const count = Math.max(1, Math.floor((width) / SLIDE_WIDTH));
+      setVisibleCount(count);
+      // Clamp current index to last valid start
+      setCurrentIndex((idx) => Math.min(idx, Math.max(0, children.length - count)));
+    };
+    recalc();
+    window.addEventListener('resize', recalc);
+    return () => window.removeEventListener('resize', recalc);
+  }, [children.length]);
+
+  const lastStartIndex = Math.max(0, children.length - visibleCount);
+  const pageCount = Math.max(1, children.length - visibleCount + 1);
+
   const goToSlide = (index: number) => {
-    setCurrentIndex(Math.max(0, Math.min(index, children.length - 1)));
+    setCurrentIndex(Math.max(0, Math.min(index, lastStartIndex)));
   };
 
   const nextSlide = () => {
@@ -165,7 +190,7 @@ export function SwipeableCarousel({
     <div className={`relative ${className}`}>
       <div
         ref={containerRef}
-        className="overflow-hidden"
+        className="overflow-hidden px-4"
         onTouchStart={handleDragStart}
         onTouchMove={handleDragMove}
         onTouchEnd={handleDragEnd}
@@ -173,26 +198,51 @@ export function SwipeableCarousel({
         onMouseMove={handleDragMove}
         onMouseUp={handleDragEnd}
         onMouseLeave={handleDragEnd}
+        style={{ WebkitOverflowScrolling: 'touch' }}
       >
         <motion.div
-          className="flex"
+          className="flex snap-x snap-mandatory justify-start gap-4"
           animate={{
-            x: -(currentIndex * 100) + (dragOffset / (containerRef.current?.offsetWidth || 1)) * 100
+            x: -(currentIndex * SLIDE_WIDTH) + dragOffset
           }}
           transition={{ type: 'spring', stiffness: 300, damping: 30 }}
         >
           {children.map((child, index) => (
-            <div key={index} className="w-full flex-shrink-0">
+            <div key={index} className="w-[320px] max-w-xs flex-shrink-0 snap-center">
               {child}
             </div>
           ))}
         </motion.div>
       </div>
 
+      {/* Arrow controls (for small desktop/tablet; hidden on small screens) */}
+      {showArrows && (
+        <div className="hidden md:flex absolute inset-y-0 left-0 right-0 items-center justify-between px-2">
+          <button
+            aria-label="Previous"
+            onClick={prevSlide}
+            disabled={currentIndex === 0}
+            className={`w-9 h-9 rounded-full bg-ivory-white/80 dark:bg-deep-black/60 shadow-md flex items-center justify-center transition disabled:opacity-40 disabled:cursor-not-allowed`}
+          >
+            <span className="sr-only">Previous</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <button
+            aria-label="Next"
+            onClick={nextSlide}
+            disabled={currentIndex >= lastStartIndex}
+            className={`w-9 h-9 rounded-full bg-ivory-white/80 dark:bg-deep-black/60 shadow-md flex items-center justify-center transition disabled:opacity-40 disabled:cursor-not-allowed`}
+          >
+            <span className="sr-only">Next</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+        </div>
+      )}
+
       {/* Dots indicator */}
       {showDots && children.length > 1 && (
         <div className="flex justify-center space-x-2 mt-4">
-          {children.map((_, index) => (
+          {Array.from({ length: pageCount }).map((_, index) => (
             <button
               key={index}
               onClick={() => goToSlide(index)}

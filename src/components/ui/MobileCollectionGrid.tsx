@@ -33,6 +33,7 @@ export default function MobileCollectionGrid({
           showDots={true}
           autoPlay={false}
           className="w-full"
+          showArrows={true}
         >
           {collections.map((collection, index) => (
             <CollectionCard
@@ -71,7 +72,7 @@ function CollectionCard({ collection, index }: { collection: Collection; index: 
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="group"
+      className="group w-80 max-w-xs mx-auto"
     >
       <Link href={`/collections/${collection.handle}`}>
         <div className="relative overflow-hidden rounded-2xl bg-white dark:bg-deep-black shadow-lg hover:shadow-xl transition-all duration-500 group-hover:scale-105">
